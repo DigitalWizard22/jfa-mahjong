@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Mahjong — JFA Table</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>MAHJONG · JFA TABLE</h1>
+  <div id="log">Connecting...</div>
+
+  <!-- Screen 0: Table Selection & Creation -->
+  <div id="screenTable" style="display:none">
+    <p class="note">Enter a table name to join or create a new game room for your group.</p>
+    <div class="bar">
+      <input id="tableInput" placeholder="Table name (e.g. table-1)" maxlength="32">
+      <button id="joinTableBtn">Join / Create Table</button>
+      <button id="randomTableBtn" style="background:#2e7d32;color:#fff">Create Random Table</button>
+    </div>
+  </div>
+
+  <!-- Screen 1: Display Name Entry -->
+  <div id="screenName" style="display:none">
+    <p class="note">Pick a display name for this session.</p>
+    <div class="bar">
+      <input id="nameInput" placeholder="Your name" maxlength="24">
+      <button id="nameBtn">Continue</button>
+    </div>
+  </div>
+
+  <!-- Screen 2: Lobby -->
+  <div id="screenLobby" style="display:none">
+    <p class="note">Current Room: <b id="currentRoomTag" style="color:var(--acc)">-</b></p>
+    <p class="note">Four seats. Pick an open seat; once all four are filled, anyone can start the hand. Share this exact page URL with the other three.</p>
+    <div class="lobby" id="lobbyGrid"></div>
+    <div class="bar">
+      <button id="startBtn" disabled>Start Game</button>
+      <button id="leaveBtn" style="display:none;background:#888;color:#fff">Leave seat</button>
+      <button id="switchTableBtn" style="background:#333;color:#fff;margin-left:auto">Switch Table</button>
+    </div>
+  </div>
+
+  <!-- Screen 3: Game Board -->
+  <div id="screenGame" style="display:none">
+    <div class="table">
+      <div class="seat" id="s2"></div>
+      <div class="seat v" id="s3"></div>
+      <div class="seat ctr"><b>Discards</b><div class="row disc" id="disc"></div></div>
+      <div class="seat v" id="s1"></div>
+      <div class="seat" id="s0"></div>
+    </div>
+    <div class="bar" id="act"></div>
+    <div class="bar"><button id="newHandBtn" style="display:none">Deal next hand</button></div>
+  </div>
+</main>
+
+<div id="winOverlay" class="win-overlay hidden">
+  <div class="confetti" id="confetti"></div>
+  <div class="win-card">
+    <div class="win-emoji">🀄</div>
+    <div class="win-title">MAHJONG!</div>
+    <div class="win-sub" id="winSub"></div>
+    <button id="winClose">Keep playing</button>
+  </div>
+</div>
+
+<script type="module" src="game.js"></script>
+</body>
+</html>

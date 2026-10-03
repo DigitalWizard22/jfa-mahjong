@@ -1,0 +1,14 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Every table document lives at tables/{tableId}. Anyone who has
+    // signed in (anonymous sign-in counts) can read and write it — that's
+    // what lets all four players sync the same game. There's no per-seat
+    // write restriction here: this is a friendly-honor-system game, not a
+    // hardened one (see the README's "hiding hands for real" section if
+    // you want to tighten this later with Cloud Functions).
+    match /tables/{tableId} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
